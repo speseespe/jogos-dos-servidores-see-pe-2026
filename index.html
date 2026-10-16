@@ -82,6 +82,7 @@ tr:last-child td{border-bottom:0}
 .team ul{list-style:none;margin:0;padding:4px 0 6px}
 .team li{display:flex;justify-content:space-between;gap:12px;padding:7px 14px;font-size:15px}
 .team li span{color:var(--muted);text-align:right}
+.jg{margin:0 18px 18px}
 .none{padding:0 18px 16px;margin:0;color:var(--muted);font-size:15px}
 .naipe{display:flex;align-items:baseline;gap:10px;margin:0;padding:16px 18px 10px;font-size:17px}
 .naipe em{font-style:normal;font-weight:500;color:var(--muted);font-size:14px}
@@ -140,15 +141,15 @@ footer a{color:var(--yellow)}
   <div class="cards" id="cards"></div>
 </section>
 
+<section id="equipes">
+  <h2>Equipes e inscritos</h2>
+  <div id="equipes-box"></div>
+</section>
 <section id="jogos">
   <h2>Tabela de jogos</h2>
   <div id="jogos-box"></div>
 </section>
 
-<section id="equipes">
-  <h2>Equipes e inscritos</h2>
-  <div id="equipes-box"></div>
-</section>
 </main>
 
 <footer><div class="wrap">
@@ -179,10 +180,12 @@ const MODALIDADES = [
 ];
 
 /* Tabela de jogos: {mod, cat, hora, local, jogo, fase} */
+const JOGOS_AVISO = 'Horários previstos, sujeitos a alteração conforme o andamento dos jogos.';
+const JOGOS_ABERTO = false;
 const JOGOS = [];
 
 /* Inscritos: {mod, cat, equipe, nome, secretaria} (sem CPF, telefone ou e-mail) */
-const INSCRITOS_ATE = '16/10/2026';
+const INSCRITOS_ATE = '16/10/2026 às 15h50';
 const P = (mod, cat, equipe, sec, nomes) => nomes.map(nome => ({mod, cat, equipe, nome, secretaria: sec}));
 const S = (mod, cat, lista) => lista.map(l => { const [nome, secretaria] = l.split('|'); return {mod, cat, equipe: '', nome, secretaria}; });
 const INSCRITOS = [
@@ -210,7 +213,8 @@ const INSCRITOS = [
  ...P('Vôlei de areia 4x4','Masculino','Manutenção II','GAB',['Jhonata Nascimento dos Santos','Leonardo Bruno da Silva de Barros','Gilberto José de Barros Neto','Magno Antonio do Nascimento','João José de Lemos']),
  ...P('Atletismo: Revezamento 4x400m','Masculino','GAB','GAB',['Jhonata Nascimento dos Santos','Leonardo Bruno da Silva de Barros','Magno Antonio do Nascimento','João Victor de Santana Vila Nova']),
  ...P('Atletismo: Revezamento 4x400m','Feminino','SEGE','SEGE',['Catherine Chaves Cavalcanti da Silva','Patrícia Campos','Gabrielly Lou','Amanda Soares']),
- ...P('Atletismo: Revezamento 4x400m','Naipe a confirmar','GAB (equipe 2)','GAB',['Roberta Soares Andrade','Maria Eduarda Vasconcelos Gomes','Túlio Romero Carvalho Lima','Thaisson Beserra da Silva']),
+ ...P('Atletismo: Revezamento 4x400m','Masculino','GAB (equipe 2)','GAB',['Túlio Romero Carvalho Lima','Thaisson Beserra da Silva','Célio Henrique Rodrigues Vieira','Luiz Guilherme Sá Cavalcanti de Albuquerque Andrade da Silva']),
+ ...P('Atletismo: Revezamento 4x400m','Feminino','GAB','GAB',['Roberta Soares Andrade','Maria Eduarda Vasconcelos Gomes','Bianca Beatriz de Souza Sales','Thayane Hayalla de Oliveira Lima']),
  ...P('Queimado','Misto','Ninguém escapa','SEGE',['Gabrielly Vitória Santos Lou','Nicolas Breno Pereira da Silva','Gilson Matheus Barbosa de Souza','Maria Eduarda Santana da Silva','Bianca da Silva Matos Rocha','Cauã Henrique Gonçalves Montenegro','Maria Carolina de Vasconcelos Lucio','Laiany Larissa Ferreira da Silva','Catherine Chaves Cavalcanti da Silva']),
  ...P('Queimado','Misto','HOMOLOGADOS PARA QUEIMAR','SEAF',['Beatriz Barros da Silva','Patrícia Tavares de Castro Melo','Andressa de Holanda Cavalcanti','Joyce M. K. Vieira da S. M.','Daniel José de Souza Silva','Cleber Miguel Cabral Batista','Paulo Monteiro e Silva','Janaina Maria Oliveira','Sérgio Raphael Silva Lima dos Santos Júnior','Brendha Gabrielly Cardoso de Souza Silva']),
  ...P('Queimado','Misto','UOP','SEES',['Mônica Rejane de Aguiar Silva','Gabriela Dutra','Thalyta Karyne Guedes Gonçalves','Fátima Godinho','Emanuele','Antônio Coutinho','Marcelo Furtado','Márcio Menezes','João Carlos','Guilherme Mourão']),
@@ -219,7 +223,11 @@ const INSCRITOS = [
  ...P('Futebol society','Masculino','Exauridos FC','SEAF',['Paulo Monteiro e Silva','Daniel José de Souza Silva','Helisson Gabriel da Silva','Sondivaldo Bezerra da Silva','Sérgio Raphael Silva Lima dos Santos Júnior','Cleber Miguel Cabral Batista','Wallison Richard Ferreira da Silva','Caio Eduardo Fernandes da Costa','Denis Paulo da Silva','João Vitor Tavares de Mendonça','Erike Márcio Silva de Lucena','José Roberto Valença']),
  ...P('Futebol society','Masculino','Predadores FC','SEAF',['Bruno Brasileiro Ferreira','Kewinny Almeida do Nascimento','Jadson Cleber Silva da Costa','Matheus Veloso Duda','Diego Aguiar Borges','Alan Celestino dos Santos','Ric Freire Mariz Filho','Sebastião Clécio Genuino da Silva','Divyrton Tavares Soares','Everton Morais da Silva','Cleber Nestor de Souza','João Victor do Nascimento Reis','Mauro Melo Rodrigues Junior','João Victor Vieira Leão','Célio Henrique R. Vieira']),
  ...P('Futebol society','Masculino','SUFRE - FC','SEGE',['Higo de Oliveira Alcoforado','Telwan Lima de Oliveira','Ronald Callou de Moura Brasil Filho','Revison Ribeiro','Lourival Pontes','Sérgio Roberto Pereira','Sávio Rafael Santos da Silva','Arthur Gomes Lopes','Victor Dantas','Heitor Travassos','Alexandre Passos','Kelveni Deivid','Guilherme Barros']),
- ...P('Futebol society','Masculino','LA TERRAZZA F.C','SEOB',['Leonardo Mateus Oliveira da Silva','Fernando Machado','Rodrigo Horácio','Diêgo Barbosa','Vinicius Calábria','Filipe Cardeal','Handerson Nieltson','Flávio José (goleiro)','Wanderley','Arthur Fernandes','Igor Coutinho','Fernando Cristo','Bruno Antonio','Lucas Cirimele','Benjamin Mariz'])
+ ...P('Futebol society','Masculino','LA TERRAZZA F.C','SEOB',['Leonardo Mateus Oliveira da Silva','Fernando Machado','Rodrigo Horácio','Diêgo Barbosa','Vinicius Calábria','Filipe Cardeal','Handerson Nieltson','Flávio José (goleiro)','Wanderley','Arthur Fernandes','Igor Coutinho','Fernando Cristo','Bruno Antonio','Lucas Cirimele','Benjamin Mariz']),
+ ...P('Beach tênis','Feminino','Dupla 4','SEAF',['Maria Luiza Portela Machado','Janine Furtunato Queiroga Maciel']),
+ ...P('Queimado','Misto','Tropa da Vivi','GAB',['Thaisson Beserra da Silva','Verônica Maria da Silva Spindola Francelino de Oliveira','Esdras Alencar e Silva','Luiz Guilherme Sá Cavalcanti de Albuquerque Andrade da Silva','Lidianne Santiago Albuquerque Vieira','Fábio Regis Soares Júnior','Thayane Hayalla de Oliveira Lima','Túlio Romero Carvalho Lima','Maria Eduarda Vasconcelos Gomes','Bianca Beatriz de Souza Sales']),
+ ...P('Queimado','Misto','Maior Lance','SEAF',['Maria Luiza Portela Machado','Arthur Brainner Oliveira da Silva','Caio Danylo Pereira Perreli','Ester Silva do Nascimento','Maísa Gomes Marinho','Grasielle de Oliveira Felix','Rayra Nascimento de Lima','Valmarque Paulo da Silva Filho','Jean Leyendecker','Lourival Pontes de Oliveira Bisneto']),
+ ...S('Atletismo: 100m rasos','Feminino',['Roberta Soares Andrade|GAB','Maria Eduarda Vasconcelos Gomes|GAB','Thayane Hayalla de Oliveira Lima|GAB','Witoria Modavia da Silva|SEGP','Eduarda Syndre Lopes de Oliveira|SEGP'])
 ];
 
 /* ====== FIM DOS DADOS ====== */
@@ -258,14 +266,18 @@ function opcoes(sel){
     box.innerHTML = '<div class="empty"><b>A tabela será divulgada aqui após o encerramento das inscrições.</b>Ela depende do número de equipes inscritas em cada modalidade. Volte depois de 16 de outubro.</div>';
     return;
   }
-  box.innerHTML = '<div class="tools"><select id="fj" aria-label="Filtrar por modalidade"></select></div><div class="scroll"><table><thead><tr><th>Horário</th><th>Modalidade</th><th>Jogo</th><th>Fase</th><th>Local</th></tr></thead><tbody id="tj"></tbody></table></div>';
-  opcoes($('#fj'));
-  const draw = () => {
-    const f = $('#fj').value;
-    $('#tj').innerHTML = JOGOS.filter(j => !f || j.mod === f).map(j =>
-      `<tr><td>${esc(j.hora)}</td><td>${esc(j.mod)} ${esc(j.cat||'')}</td><td>${esc(j.jogo)}</td><td>${esc(j.fase||'')}</td><td>${esc(j.local||'')}</td></tr>`).join('');
-  };
-  $('#fj').onchange = draw; draw();
+  const n = (k, s, p) => `${k} ${k === 1 ? s : p}`;
+  const html = MODALIDADES.map(m => {
+    const L = JOGOS.filter(j => j.mod === m.nome);
+    if (!L.length) return '';
+    const cats = [...new Set(L.map(j => j.cat).filter(Boolean))];
+    const multi = cats.length > 1;
+    const un = m.nome.startsWith('Atletismo') ? n(L.length, 'prova', 'provas') : n(L.length, 'jogo', 'jogos');
+    const rotulo = (cats.length === 1 ? cats[0] + ' · ' : '') + un;
+    const linhas = L.map(j => `<tr><td>${esc(j.hora)}</td><td>${esc(j.dur || '')}</td>${multi ? `<td>${esc(j.cat || '')}</td>` : ''}<td>${esc(j.jogo)}</td><td>${esc(j.fase || '')}</td><td>${esc(j.local || '')}</td></tr>`).join('');
+    return `<details class="mod" style="--c:${m.cor}"${JOGOS_ABERTO ? ' open' : ''}><summary><b>${esc(m.nome)}</b><em>${rotulo}</em></summary><div class="scroll jg"><table><thead><tr><th>Horário</th><th>Duração</th>${multi ? '<th>Naipe</th>' : ''}<th>Jogo</th><th>Fase</th><th>Local</th></tr></thead><tbody>${linhas}</tbody></table></div></details>`;
+  }).join('');
+  box.innerHTML = `<p class="notice">${JOGOS_AVISO}</p>` + html;
 })();
 
 // Equipes e inscritos
@@ -275,7 +287,7 @@ function opcoes(sel){
     box.innerHTML = '<div class="empty"><b>As inscrições ainda não começaram.</b>Quando a lista estiver pronta, você poderá ver aqui cada equipe, seus integrantes e a secretaria executiva de origem.</div>';
     return;
   }
-  box.innerHTML = `<p class="notice">Lista parcial: inscrições registradas até ${INSCRITOS_ATE}. Novas inscrições serão incluídas nas próximas atualizações.</p><div class="tools"><input id="be" type="search" placeholder="Buscar por nome, equipe ou secretaria" aria-label="Buscar inscritos"></div><div id="le"></div>`;
+  box.innerHTML = `<p class="notice">Lista parcial, atualizada em ${INSCRITOS_ATE}. Inscrições feitas depois desse horário serão incluídas nas próximas atualizações.</p><div class="tools"><input id="be" type="search" placeholder="Buscar por nome, equipe ou secretaria" aria-label="Buscar inscritos"></div><div id="le"></div>`;
   const pl = (n, s, p) => `${n} ${n === 1 ? s : p}`;
   const ORDEM = ['Feminino','Masculino','Misto'];
   const ord = c => { const k = ORDEM.indexOf(c); return k < 0 ? 9 : k; };
