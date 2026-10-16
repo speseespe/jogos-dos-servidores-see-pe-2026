@@ -66,12 +66,30 @@ table{border-collapse:collapse;width:100%;min-width:560px;font-size:15px}
 th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line)}
 th{font-size:14px;color:var(--muted);font-weight:700}
 tr:last-child td{border-bottom:0}
-.team{margin-bottom:14px}
-.team h4{margin:0;padding:12px 14px;background:var(--navy);color:#fff;font-size:16px;border-radius:10px 10px 0 0}
-.team ul{list-style:none;margin:0;padding:0;background:var(--surface);border:1px solid var(--line);border-top:0;border-radius:0 0 10px 10px}
-.team li{display:flex;justify-content:space-between;gap:12px;padding:9px 14px;border-bottom:1px solid var(--line);font-size:15px}
-.team li:last-child{border-bottom:0}
+.notice{background:var(--yellow);color:#0f2a5e;border-radius:10px;padding:12px 16px;margin:0 0 16px;font-weight:700;font-size:16px}
+.mod{background:var(--surface);border:1px solid var(--line);border-left:6px solid var(--c);border-radius:10px;margin-bottom:12px}
+.mod summary{display:flex;align-items:center;gap:12px;padding:16px 18px;cursor:pointer;font-size:18px;list-style:none}
+.mod summary::-webkit-details-marker{display:none}
+.mod summary:after{content:"+";font-size:24px;line-height:1;color:var(--muted)}
+.mod[open] summary:after{content:"\2212"}
+.mod summary em{font-style:normal;font-weight:500;color:var(--muted);font-size:15px;margin-left:auto}
+.teams{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;padding:4px 18px 18px;align-items:start}
+@media (max-width:640px){.teams{grid-template-columns:1fr}}
+.team{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--bg)}
+.team h4{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:0;padding:11px 14px;background:var(--navy);color:#fff;font-size:16px}
+.sig{background:var(--yellow);color:#0f2a5e;border-radius:6px;padding:2px 8px;font-size:13px}
+.sub{padding:8px 14px 0;color:var(--muted);font-size:14px}
+.team ul{list-style:none;margin:0;padding:4px 0 6px}
+.team li{display:flex;justify-content:space-between;gap:12px;padding:7px 14px;font-size:15px}
 .team li span{color:var(--muted);text-align:right}
+.none{padding:0 18px 16px;margin:0;color:var(--muted);font-size:15px}
+.naipe{display:flex;align-items:baseline;gap:10px;margin:0;padding:16px 18px 10px;font-size:17px}
+.naipe em{font-style:normal;font-weight:500;color:var(--muted);font-size:14px}
+.teams{padding-top:0}
+.teams.one{grid-template-columns:1fr}
+.teams.one ul{column-count:2;column-gap:28px}
+.teams.one li{break-inside:avoid}
+@media (max-width:640px){.teams.one ul{column-count:1}}
 footer{margin-top:56px;background:var(--navy);color:#dbe4fb;padding:28px 0;font-size:15px}
 footer a{color:var(--yellow)}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
@@ -164,7 +182,47 @@ const MODALIDADES = [
 const JOGOS = [];
 
 /* Inscritos: {mod, cat, equipe, nome, secretaria} (sem CPF, telefone ou e-mail) */
-const INSCRITOS = [];
+const INSCRITOS_ATE = '16/10/2026';
+const P = (mod, cat, equipe, sec, nomes) => nomes.map(nome => ({mod, cat, equipe, nome, secretaria: sec}));
+const S = (mod, cat, lista) => lista.map(l => { const [nome, secretaria] = l.split('|'); return {mod, cat, equipe: '', nome, secretaria}; });
+const INSCRITOS = [
+ ...S('Atletismo: 100m rasos','Feminino',['Amanda Maria da Soledade Guilherme Soares|SEGE','Andreza Galindo Ferreira|SEAF','Elainy Cristina de Melo Almeida|SEGP','Gabriela de Souza|SEES','Layla Bonfim Ferreira|SEDE','Marta da Silva Pereira|SEGP','Mônica Rejane de Aguiar Silva|SEES','Nancilda Conceição Silva Barros|SEGE','Rayra Nascimento de Lima|SEGP','Vanessa Bastos Simões da Costa|SEMP','Vanilda Pereira Soares|SEMP']),
+ ...S('Atletismo: 100m rasos','Masculino',['Carlos Batista da Silva|SEOB','Carlos Eduardo Gomes de Lima|SEMP','Cleber Miguel Cabral Batista|GAB','Eduardo Jorge Barcelos de Almeida|GAB','Higo de Oliveira Alcoforado|SEGP','Jhonata Nascimento dos Santos|GAB','Leonardo Guimarães da Silva Filho|SEGP','Lucas Gabriel da Silva Xavier|SEGP','Lucas Rodrigues Silva de Almeida|SEDE','Lucca Rodrigues Fraga|SEMP','Marcelo Souza da Silva|GAB','Rodrigo Antônio da Silva|SEAM','Sávio Rafael Santos da Silva|SEGE','Telwan Lima de Oliveira|SEGE','Thaisson Beserra da Silva|GAB','Wallison Richard Ferreira da Silva|SEDE']),
+ ...P('Atletismo: Revezamento 4x400m','Feminino','SEAF','SEAF',['Camille Gabriela Barbosa de Moura','Nykássia Natacha Rocha Dinoá','Katarina Magalhães Cutrim Tavares','Maria Beatriz Nobre de Abreu']),
+ ...P('Atletismo: Revezamento 4x400m','Feminino','SEES','SEES',['Gabriela de Souza','Mônica Rejane de Aguiar Silva','Thalyta Karyne Guedes Gonçalves','Fátima Godinho']),
+ ...P('Atletismo: Revezamento 4x400m','Masculino','SEGE','SEGE',['Telwan Lima de Oliveira','Higo de Oliveira Alcoforado','Ronald Callou de Moura Brasil Filho','Sávio Rafael Santos da Silva']),
+ ...P('Beach tênis','Feminino','Dupla 1','SEAF',['Lídia Damares Barbosa da Silva','Isabella Santos Maia da Silva']),
+ ...P('Beach tênis','Feminino','Dupla 2','SEES',['Emanuelly Maria dos Santos Lino','Thalyta Karyne Guedes Gonçalves']),
+ ...P('Beach tênis','Feminino','Dupla 3','SEAF',['Júlia Maria Lima Viana','Eduarda Silva de Oliveira']),
+ ...P('Beach tênis','Masculino','Dupla 1','GAB',['Cleber Miguel Cabral Batista','Erike Márcio Silva de Lucena']),
+ ...P('Beach tênis','Masculino','Dupla 2','SEMP',['Lucca Rodrigues Fraga','Carlos Eduardo Gomes de Lima']),
+ ...P('Queimado','Misto','SEM Parar','SEMP',['Vanessa Bastos Simões da Costa','Janine Furtunato Queiroga Maciel','Cássia Pricila de Almeida Carvalho','Gabriel Rodrigues Correia de Sousa','Carlos Eduardo Gomes de Lima','Henrique de Lima Fernandes','Débora Bezerra Silva','Adriana Maria de Freitas Ferreira','Robson Chacon Ferreira','Normelita Carneiro de Paiva']),
+ ...P('Queimado','Misto','Esquadrão Quack','SEAF',['Kewinny Almeida do Nascimento','Letícia Braga de Carvalho','Cleber Calciolari de Lima','Glayce Ellen Rodrigues do Nascimento','Edlane de Santana Moura de Souza Guimarães','Maria Clara Ribeiro de Carvalho','João Victor Vieira Leão','Samuel Pereira Barreto Júnior','Jailson da Silva Santos']),
+ ...P('Queimado','Misto','GGADM','SEAF',['Geyssiana Izabela Braga da Silva','Wallison Richard Ferreira da Silva','Caio Eduardo Fernandes da Costa','Helisson Gabriel da Silva','Lídia Damares Barbosa da Silva','Isabella Santos Maia da Silva','Maria Beatriz Nobre de Abreu','Erike Márcio Silva de Lucena','Denis Paulo da Silva','Katarina Magalhães Cutrim Tavares']),
+ ...P('Queimado','Misto','GECONQUISTADORES','SEAF',['César Timóteo Silva Araújo','Edson César Silva','Graziela Maria Ferreira de Souza Lima','José Humberto do Nascimento Cruz','Joana Gabrielle Bombasaro','Joyce Adriane Alves de Assis','Maurício Paes Barreto','Raiza Ingrid da Silva','Sinval Peixoto da Silva Júnior','Yanatasha Fernandes Ferreira da Silva Oliveira']),
+ ...P('Vôlei de areia 4x4','Feminino','NIKÉ','SEDE',['Isabella Santos Maia da Silva','Maria Clara Ribeiro de Carvalho','Nykássia Natacha Rocha Dinoá','Beatriz Barros da Silva','Lívia Ferreira de Brito (reserva)']),
+ ...P('Vôlei de areia 4x4','Masculino','Voleiros','SEGP',['Vitor Alves do Nascimento','Francisco Nascimento Rodrigues','Jefte do Nascimento Fernando','João Pedro Cassol da Jornada']),
+ ...P('Vôlei de areia 4x4','Masculino','GGADM','GAB',['Cleber Miguel Cabral Batista','Erike Márcio Silva de Lucena','Lucas André Gualberto de Moura','Helisson Gabriel da Silva']),
+ ...P('Vôlei de areia 4x4','Masculino','Os Brabos do Vôlei','SEAF',['Rafael Guedes e Silva','Eduardo Jorge Barcelos de Almeida','Elisson da Silva Amaral','Manfred Ericson R. da Silva','Luiz de França Nunes Neto','João Lucas Gomes Oliveira de Barros']),
+ ...P('Vôlei de areia 4x4','Masculino','Papudinhos','SEDE',['Vinícius Tôrres Silva','Peracio Gondim Guimarães Junior','Gustavo José da Silva','Donato da Silva Braz Neto']),
+ ...P('Vôlei de areia 4x4','Masculino','Vôlei do Off','SEOB',['Leonardo Mateus Oliveira da Silva','Rodrigo Horácio Alves Barbosa','Handerson Nieltson Costa Lima','Fernando Nunes Machado Filho']),
+ ...P('Vôlei de areia 4x4','Masculino','Manutenção I','GAB',['Erick Rafael de Barros','Oseas de Almeida Seixas Filho','Romildo da Silva Lima','Rafael Alves Albuquerque']),
+ ...P('Vôlei de areia 4x4','Masculino','Manutenção II','GAB',['Jhonata Nascimento dos Santos','Leonardo Bruno da Silva de Barros','Gilberto José de Barros Neto','Magno Antonio do Nascimento','João José de Lemos']),
+ ...P('Atletismo: Revezamento 4x400m','Masculino','GAB','GAB',['Jhonata Nascimento dos Santos','Leonardo Bruno da Silva de Barros','Magno Antonio do Nascimento','João Victor de Santana Vila Nova']),
+ ...P('Atletismo: Revezamento 4x400m','Feminino','SEGE','SEGE',['Catherine Chaves Cavalcanti da Silva','Patrícia Campos','Gabrielly Lou','Amanda Soares']),
+ ...P('Atletismo: Revezamento 4x400m','Naipe a confirmar','GAB (equipe 2)','GAB',['Roberta Soares Andrade','Maria Eduarda Vasconcelos Gomes','Túlio Romero Carvalho Lima','Thaisson Beserra da Silva']),
+ ...P('Queimado','Misto','Ninguém escapa','SEGE',['Gabrielly Vitória Santos Lou','Nicolas Breno Pereira da Silva','Gilson Matheus Barbosa de Souza','Maria Eduarda Santana da Silva','Bianca da Silva Matos Rocha','Cauã Henrique Gonçalves Montenegro','Maria Carolina de Vasconcelos Lucio','Laiany Larissa Ferreira da Silva','Eduardo Jorge Barcelos de Almeida']),
+ ...P('Queimado','Misto','HOMOLOGADOS PARA QUEIMAR','SEAF',['Beatriz Barros da Silva','Patrícia Tavares de Castro Melo','Andressa de Holanda Cavalcanti','Joyce M. K. Vieira da S. M.','Daniel José de Souza Silva','Cleber Miguel Cabral Batista','Paulo Monteiro e Silva','Janaina Maria Oliveira','Sérgio Raphael Silva Lima dos Santos Júnior','Brendha Gabrielly Cardoso de Souza Silva']),
+ ...P('Queimado','Misto','UOP','SEES',['Mônica Rejane de Aguiar Silva','Gabriela Dutra','Thalyta Karyne Guedes Gonçalves','Fátima Godinho','Emanuele','Antônio Coutinho','Marcelo Furtado','Márcio Menezes','João Carlos','Guilherme Mourão']),
+ ...P('Futsal','Feminino','As inexigíveis','SEAF',['Beatriz Barros da Silva','Andressa de Holanda Cavalcanti','Joyce M. K. Vieira da S. M.','Brendha Gabrielly Cardoso de Souza Silva','Geyssiana Izabela Braga da Silva','Lídia Damares Barbosa da Silva','Isabella Santos Maia da Silva','Patrícia Tavares de Castro Melo','Lívia Ferreira de Brito']),
+ ...P('Futsal','Feminino','UOP','SEES',['Gabriela Dutra','Thalyta Karyne Guedes Gonçalves','Mônica Rejane de Aguiar Silva','Tamytha Torres','Fátima Godinho']),
+ ...P('Futebol society','Masculino','Exauridos FC','SEAF',['Paulo Monteiro e Silva','Daniel José de Souza Silva','Helisson Gabriel da Silva','Sondivaldo Bezerra da Silva','Sérgio Raphael Silva Lima dos Santos Júnior','Cleber Miguel Cabral Batista','Wallison Richard Ferreira da Silva','Caio Eduardo Fernandes da Costa','Denis Paulo da Silva','João Vitor Tavares de Mendonça','Erike Márcio Silva de Lucena','José Roberto Valença']),
+ ...P('Futebol society','Masculino','Predadores FC','SEAF',['Bruno Brasileiro Ferreira','Kewinny Almeida do Nascimento','Jadson Cleber Silva da Costa','Matheus Veloso Duda','Diego Aguiar Borges','Alan Celestino dos Santos','Ric Freire Mariz Filho','Sebastião Clécio Genuino da Silva','Divyrton Tavares Soares','Everton Morais da Silva','Cleber Nestor de Souza','João Victor do Nascimento Reis','Mauro Melo Rodrigues Junior','João Victor Vieira Leão','Célio Henrique R. Vieira']),
+ ...P('Futebol society','Masculino','SUFRE - FC','SEGE',['Higo de Oliveira Alcoforado','Telwan Lima de Oliveira','Ronald Callou de Moura Brasil Filho','Revison Ribeiro','Lourival Pontes','Sérgio Roberto Pereira','Sávio Rafael Santos da Silva']),
+ ...P('Futebol society','Masculino','LA TERRAZZA F.C','SEOB',['Leonardo Mateus Oliveira da Silva','Fernando Machado','Rodrigo Horácio','Diêgo Barbosa','Vinicius Calábria','Filipe Cardeal','Handerson Nieltson','Flávio José (goleiro)','Wanderley','Arthur Fernandes','Igor Coutinho','Fernando Cristo','Bruno Antonio','Lucas Cirimele']),
+ ...P('Futebol society','Masculino','SUFRE','SEGE',['Arthur Gomes Lopes','Victor Dantas','Heitor Travassos','Alexandre Passos','Kelveni Deivid','Guilherme Barros'])
+];
+
 /* ====== FIM DOS DADOS ====== */
 
 const $ = s => document.querySelector(s);
@@ -218,16 +276,33 @@ function opcoes(sel){
     box.innerHTML = '<div class="empty"><b>As inscrições ainda não começaram.</b>Quando a lista estiver pronta, você poderá ver aqui cada equipe, seus integrantes e a secretaria executiva de origem.</div>';
     return;
   }
-  box.innerHTML = '<div class="tools"><select id="fe" aria-label="Filtrar por modalidade"></select><input id="be" type="search" placeholder="Buscar por nome ou secretaria"></div><div id="le"></div>';
-  opcoes($('#fe'));
+  box.innerHTML = `<p class="notice">Lista parcial: inscrições registradas até ${INSCRITOS_ATE}. Novas inscrições serão incluídas nas próximas atualizações.</p><div class="tools"><input id="be" type="search" placeholder="Buscar por nome, equipe ou secretaria" aria-label="Buscar inscritos"></div><div id="le"></div>`;
+  const pl = (n, s, p) => `${n} ${n === 1 ? s : p}`;
+  const ORDEM = ['Feminino','Masculino','Misto'];
+  const ord = c => { const k = ORDEM.indexOf(c); return k < 0 ? 9 : k; };
   const draw = () => {
-    const f = $('#fe').value, q = $('#be').value.toLowerCase();
-    const lista = INSCRITOS.filter(i => (!f || i.mod === f) && (!q || (i.nome+' '+i.secretaria+' '+i.equipe).toLowerCase().includes(q)));
-    const g = {};
-    lista.forEach(i => { const k = `${i.mod} ${i.cat||''} | ${i.equipe}`; (g[k] = g[k] || []).push(i); });
-    $('#le').innerHTML = Object.keys(g).map(k => `<div class="team"><h4>${esc(k.replace(' | ',' | '))}</h4><ul>${g[k].map(i => `<li>${esc(i.nome)}<span>${esc(i.secretaria)}</span></li>`).join('')}</ul></div>`).join('') || '<div class="empty">Nenhum resultado para essa busca.</div>';
+    const q = $('#be').value.trim().toLowerCase();
+    const html = MODALIDADES.map(m => {
+      const lista = INSCRITOS.filter(i => i.mod === m.nome && (!q || (i.nome + ' ' + i.secretaria + ' ' + i.equipe).toLowerCase().includes(q)));
+      if (q && !lista.length) return '';
+      const unidade = (n) => m.nome === 'Beach tênis' ? pl(n, 'dupla', 'duplas') : pl(n, 'equipe', 'equipes');
+      const grupos = (arr) => { const g = {}; arr.forEach(i => { (g[i.equipe + '|' + i.cat] = g[i.equipe + '|' + i.cat] || {equipe: i.equipe, sec: i.secretaria, itens: []}).itens.push(i); }); return Object.values(g); };
+      const todos = grupos(lista);
+      let total = 'sem inscrições';
+      if (todos.length) total = todos.some(x => x.equipe) ? unidade(todos.length) : pl(lista.length, 'inscrito', 'inscritos');
+      const cats = [...new Set(lista.map(i => i.cat))].sort((x, y) => ord(x) - ord(y));
+      const secoes = cats.map(c => {
+        const sub = lista.filter(i => i.cat === c), gs = grupos(sub);
+        if (!sub.some(i => i.equipe)) {
+          return `<h3 class="naipe">${esc(c)}<em>${pl(sub.length, 'inscrito', 'inscritos')}</em></h3><div class="teams one"><div class="team"><ul>${sub.map(i => `<li>${esc(i.nome)}<span>${esc(i.secretaria)}</span></li>`).join('')}</ul></div></div>`;
+        }
+        return `<h3 class="naipe">${esc(c)}<em>${unidade(gs.length)}</em></h3><div class="teams">${gs.map(x => `<div class="team"><h4><span>${esc(x.equipe)}</span><b class="sig">${esc(x.sec)}</b></h4><div class="sub">${pl(x.itens.length, 'atleta', 'atletas')}</div><ul>${x.itens.map(i => `<li>${esc(i.nome)}</li>`).join('')}</ul></div>`).join('')}</div>`;
+      }).join('');
+      return `<details class="mod" style="--c:${m.cor}"${q ? ' open' : ''}><summary><b>${esc(m.nome)}</b><em>${total}</em></summary>${secoes || '<p class="none">Nenhuma inscrição registrada até o momento.</p>'}</details>`;
+    }).join('');
+    $('#le').innerHTML = html || '<div class="empty">Nenhum resultado para essa busca.</div>';
   };
-  $('#fe').onchange = draw; $('#be').oninput = draw; draw();
+  $('#be').oninput = draw; draw();
 })();
 </script>
 </body>
