@@ -185,7 +185,7 @@ const JOGOS_ABERTO = false;
 const JOGOS = [];
 
 /* Inscritos: {mod, cat, equipe, nome, secretaria} (sem CPF, telefone ou e-mail) */
-const INSCRITOS_ATE = '19/10/2026 às 09h25';
+const INSCRITOS_ATE = '19/10/2026 às 10h16';
 const P = (mod, cat, equipe, sec, nomes) => nomes.map(nome => ({mod, cat, equipe, nome, secretaria: sec}));
 const S = (mod, cat, lista) => lista.map(l => { const [nome, secretaria] = l.split('|'); return {mod, cat, equipe: '', nome, secretaria}; });
 const INSCRITOS = [
@@ -203,13 +203,13 @@ const INSCRITOS = [
  ...P('Queimado','Misto','Esquadrão Quack','SEAF',['Kewinny Almeida do Nascimento','Letícia Braga de Carvalho','Cleber Calciolari de Lima','Glayce Ellen Rodrigues do Nascimento','Edlane de Santana Moura de Souza Guimarães','Maria Clara Ribeiro de Carvalho','João Victor Vieira Leão','Samuel Pereira Barreto Júnior','Jailson da Silva Santos']),
  ...P('Queimado','Misto','GGADM','SEAF',['Geyssiana Izabela Braga da Silva','Wallison Richard Ferreira da Silva','Caio Eduardo Fernandes da Costa','Helisson Gabriel da Silva','Lídia Damares Barbosa da Silva','Isabella Santos Maia da Silva','Maria Beatriz Nobre de Abreu','Erike Márcio Silva de Lucena','Denis Paulo da Silva','Katarina Magalhães Cutrim Tavares']),
  ...P('Queimado','Misto','GECONQUISTADORES','SEAF',['César Timóteo Silva Araújo','Edson César Silva','Graziela Maria Ferreira de Souza Lima','José Humberto do Nascimento Cruz','Joana Gabrielle Bombasaro','Joyce Adriane Alves de Assis','Maurício Paes Barreto','Raiza Ingrid da Silva','Sinval Peixoto da Silva Júnior','Yanatasha Fernandes Ferreira da Silva Oliveira']),
- ...P('Vôlei de areia 4x4','Feminino','NIKÉ','SEDE',['Isabella Santos Maia da Silva','Maria Clara Ribeiro de Carvalho','Nykássia Natacha Rocha Dinoá','Beatriz Barros da Silva','Lívia Ferreira de Brito (reserva)']),
+ ...P('Vôlei de areia 4x4','Feminino','NIKÉ','SEDE',['Isabella Santos Maia da Silva','Maria Clara Ribeiro de Carvalho','Nykássia Natacha Rocha Dinoá','Beatriz Barros da Silva','Lívia Ferreira de Brito']),
  ...P('Vôlei de areia 4x4','Masculino','Voleiros','SEGP',['Vitor Alves do Nascimento','Francisco Nascimento Rodrigues','Jefte do Nascimento Fernando','João Pedro Cassol da Jornada']),
  ...P('Vôlei de areia 4x4','Masculino','GGADM','GAB',['Cleber Miguel Cabral Batista','Erike Márcio Silva de Lucena','Lucas André Gualberto de Moura','Helisson Gabriel da Silva']),
  ...P('Vôlei de areia 4x4','Masculino','Os Brabos do Vôlei','SEAF',['Rafael Guedes e Silva','Eduardo Jorge Barcelos de Almeida','Elisson da Silva Amaral','Manfred Ericson R. da Silva','Luiz de França Nunes Neto','João Lucas Gomes Oliveira de Barros']),
  ...P('Vôlei de areia 4x4','Masculino','Papudinhos','SEDE',['Vinícius Tôrres Silva','Peracio Gondim Guimarães Junior','Gustavo José da Silva','Donato da Silva Braz Neto']),
  ...P('Vôlei de areia 4x4','Masculino','Vôlei do Off','SEOB',['Leonardo Mateus Oliveira da Silva','Rodrigo Horácio Alves Barbosa','Handerson Nieltson Costa Lima','Fernando Nunes Machado Filho']),
- ...P('Vôlei de areia 4x4','Masculino','Manutenção I','GAB',['Erick Rafael de Barros','Oseas de Almeida Seixas Filho','Romildo da Silva Lima','Rafael Alves Albuquerque']),
+ ...P('Vôlei de areia 4x4','Masculino','Manutenção I','GAB',['Erick Rafael de Barros','Oseas de Almeida Seixas Filho','Romildo da Silva Lima','Rafael Alves Albuquerque','Jailson da Silva Santos']),
  ...P('Vôlei de areia 4x4','Masculino','Manutenção II','GAB',['Jhonata Nascimento dos Santos','Leonardo Bruno da Silva de Barros','Gilberto José de Barros Neto','Magno Antonio do Nascimento','João José de Lemos']),
  ...P('Atletismo: Revezamento 4x400m','Masculino','GAB','GAB',['Jhonata Nascimento dos Santos','Leonardo Bruno da Silva de Barros','Magno Antonio do Nascimento','João Victor de Santana Vila Nova']),
  ...P('Atletismo: Revezamento 4x400m','Feminino','SEGE','SEGE',['Catherine Chaves Cavalcanti da Silva','Patrícia Campos','Gabrielly Lou','Amanda Soares']),
@@ -221,7 +221,7 @@ const INSCRITOS = [
  ...P('Futsal','Feminino','As inexigíveis','SEAF',['Beatriz Barros da Silva','Andressa de Holanda Cavalcanti','Joyce M. K. Vieira da S. M.','Brendha Gabrielly Cardoso de Souza Silva','Geyssiana Izabela Braga da Silva','Lídia Damares Barbosa da Silva','Isabella Santos Maia da Silva','Patrícia Tavares de Castro Melo','Lívia Ferreira de Brito']),
  ...P('Futsal','Feminino','UOP','SEES',['Gabriela Dutra','Thalyta Karyne Guedes Gonçalves','Mônica Rejane de Aguiar Silva','Tamytha Torres','Fátima Godinho']),
  ...P('Futebol society','Masculino','Exauridos FC','SEAF',['Paulo Monteiro e Silva','Daniel José de Souza Silva','Helisson Gabriel da Silva','Sondivaldo Bezerra da Silva','Sérgio Raphael Silva Lima dos Santos Júnior','Cleber Miguel Cabral Batista','Wallison Richard Ferreira da Silva','Caio Eduardo Fernandes da Costa','Denis Paulo da Silva','João Vitor Tavares de Mendonça','Erike Márcio Silva de Lucena','José Roberto Valença']),
- ...P('Futebol society','Masculino','Predadores FC','SEAF',['Bruno Brasileiro Ferreira','Kewinny Almeida do Nascimento','Jadson Cleber Silva da Costa','Matheus Veloso Duda','Diego Aguiar Borges','Alan Celestino dos Santos','Ric Freire Mariz Filho','Sebastião Clécio Genuino da Silva','Divyrton Tavares Soares','Everton Morais da Silva','Cleber Nestor de Souza','João Victor do Nascimento Reis','Mauro Melo Rodrigues Junior','João Victor Vieira Leão','Célio Henrique R. Vieira']),
+ ...P('Futebol society','Masculino','Predadores FC','SEAF',['Bruno Brasileiro Ferreira','Kewinny Almeida do Nascimento','Jadson Cleber Silva da Costa','Matheus Veloso Duda','Diego Aguiar Borges','Alan Celestino dos Santos','Ric Freire Mariz Filho','Sebastião Clécio Genuino da Silva','Divyrton Tavares Soares','Everton Morais da Silva','Cleber Nestor de Souza','João Victor do Nascimento Reis','Mauro Melo Rodrigues Junior','João Victor Vieira Leão','Geneton Franco Sarmento Filho']),
  ...P('Futebol society','Masculino','SUFRE - FC','SEGE',['Higo de Oliveira Alcoforado','Telwan Lima de Oliveira','Ronald Callou de Moura Brasil Filho','Revison Ribeiro','Lourival Pontes','Sérgio Roberto Pereira','Sávio Rafael Santos da Silva','Arthur Gomes Lopes','Victor Dantas','Heitor Travassos','Alexandre Passos','Kelveni Deivid','Guilherme Barros']),
  ...P('Futebol society','Masculino','LA TERRAZZA F.C','SEOB',['Leonardo Mateus Oliveira da Silva','Fernando Machado','Rodrigo Horácio','Diêgo Barbosa','Vinicius Calábria','Filipe Cardeal','Handerson Nieltson','Flávio José (goleiro)','Wanderley','Arthur Fernandes','Igor Coutinho','Fernando Cristo','Bruno Antonio','Lucas Cirimele','Benjamin Mariz']),
  ...P('Beach tênis','Feminino','Dupla 4','SEAF',['Maria Luiza Portela Machado','Janine Furtunato Queiroga Maciel']),
