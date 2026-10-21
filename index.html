@@ -190,7 +190,7 @@ const JOGOS = [];
 /* Inscritos: {mod, cat, equipe, nome, secretaria} (sem CPF, telefone ou e-mail) */
 /* Observações por equipe: 'Modalidade|Equipe': 'texto' */
 const OBS = {'Futebol society|Manutenção': 'Os 14 atletas serão escolhidos no dia da competição.'};
-const INSCRITOS_ATE = '21/10/2026 às 09h06';
+const INSCRITOS_ATE = '21/10/2026 às 09h42';
 const P = (mod, cat, equipe, sec, nomes) => nomes.map(nome => ({mod, cat, equipe, nome, secretaria: sec}));
 const S = (mod, cat, lista) => lista.map(l => { const [nome, secretaria] = l.split('|'); return {mod, cat, equipe: '', nome, secretaria}; });
 const INSCRITOS = [
@@ -238,6 +238,7 @@ const INSCRITOS = [
  ...P('Futebol society','Masculino','Boleiros','SEAF',['Sinval Peixoto da Silva Júnior','César Timóteo Silva Araújo','Edson César Silva','Leonardo Guimarães','Lucas Gabriel da Silva Xavier','Manoel Joelmir Marques Pereira','Alisson da Silva Barbosa','Maurício Domingos Gomes Filho','Higor Vero','Pedro Henrique','Luís Eduardo Barbosa dos Santos','Pablo Rafael','Hallain Dellon Bomfin','Leandro Barbosa']),
  ...P('Queimado','Misto','Financeiro Pro Max','SEAF',['Otacílio de Souza Rocha','Hallain Dellon Bomfin','Alice Oliveira da Silva','Darfini Vitor Lima','Camila Marques Lima','Marcelina Caetano dos Santos','Manoel Joelmir Marques Pereira','Juliana Lemos','Ana Letícia Batista de Oliveira','Ana Patrícia da Silva']),
  ...P('Beach tênis','Feminino','Dupla 4','SEAF',['Maria Luiza Portela Machado','Janine Furtunato Queiroga Maciel']),
+ ...P('Beach tênis','Feminino','Dupla 5','SEAF',['Aline Cristinne','Rosicleide Maria']),
  ...P('Vôlei de areia 4x4','Feminino','SEOB','SEOB',['Geovana Pedroza','Eduarda Pereira','Marília Vieira','Marcela Bino']),
  ...P('Queimado','Misto','Tropa do Gabinete','GAB',['Priscila Soares','Geysa Barros','Irapuã Vaz','Dionísio Moura','Dayana Arruda','Helena Luiza','Tatiane Carvalho','Elayne Costa','Rayssa Caroline','Gabriela Bezerra']),
  ...P('Futebol society','Masculino','LOSC Lyra FC','SEAF',['João Pedro Cassol da Jornada','Arthur Brainner Oliveira da Silva','Valmarque Paulo da Silva Filho','Hugo Leonardo Machado Santana','Cauã Francisco de Souza Elias','Vitor Alves do Nascimento','Tiago Ferreira dos Santos','Jean Leyendecker']),
