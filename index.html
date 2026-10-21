@@ -86,6 +86,35 @@ tr:last-child td{border-bottom:0}
 .team li{display:flex;justify-content:space-between;gap:12px;padding:7px 14px;font-size:15px}
 .team li span{color:var(--muted);text-align:right}
 .jg{margin:0 18px 18px}
+.nota{margin:0 18px 6px;color:var(--muted);font-size:14px}
+.bk{padding:6px 18px 18px;overflow-x:auto}
+.bk-h{margin:14px 18px 4px;font-size:16px;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+.bk-h em{font-style:normal;color:var(--muted);font-size:14px;font-weight:500}
+.nd{display:flex;align-items:flex-start;width:max-content}
+.kids{position:relative;display:flex;flex-direction:column;padding-right:22px}
+.kids:before{content:"";position:absolute;right:0;top:var(--y1,0);height:calc(var(--y2,0px) - var(--y1,0px));border-right:2px solid var(--line)}
+.kid{position:relative;display:flex;justify-content:flex-end;padding:6px 0}
+.kid:after{content:"";position:absolute;right:-22px;top:var(--ay,50%);width:22px;border-top:2px solid var(--line)}
+.nd>.bx.wn{margin-top:0}
+.bx{width:176px;border:1px solid var(--line);border-left:4px solid var(--c,var(--navy));border-radius:8px;background:var(--surface);padding:7px 10px;font-size:14px;line-height:1.3}
+.bx b{display:block;font-weight:700}
+.bx span{color:var(--muted);font-size:13px}
+.bx small{display:block;color:var(--muted);font-size:12.5px}
+.bx em{font-style:normal;font-size:11.5px;font-weight:700;color:var(--orange)}
+.bx.lf b{display:inline}
+.bx.wn{background:var(--surface);border-color:var(--c,var(--navy));width:224px}
+.bx.wn.fin{width:196px;background:var(--bg)}
+.bx .vs{margin-top:6px;padding-top:6px;border-top:1px solid var(--line);font-size:13.5px;line-height:1.4}
+.bx .vs i{font-style:normal;color:var(--muted);font-weight:700}
+.bx .vs span{font-size:12.5px}
+.bx .vs em{font-size:11px}
+.bx details li{margin-bottom:3px}
+.mod .bx details>summary{display:block;padding:0;gap:0;cursor:pointer;color:var(--muted);font-size:12.5px;font-weight:600;margin-top:3px}
+.mod .bx details>summary:after,.mod[open] .bx details>summary:after{content:none}
+.mod .bx details>summary::before{content:'▸ '}
+.mod .bx details[open]>summary::before{content:'▾ '}
+.bx details ul{margin:4px 0 0;padding-left:16px;font-size:12.5px}
+
 .nota{margin:0 18px 10px;color:var(--muted);font-size:14px}
 .at summary{cursor:pointer;color:var(--muted);font-size:14px;margin-top:4px}
 .at ul{margin:6px 0 0;padding-left:18px;font-size:14px}
@@ -169,9 +198,9 @@ footer a{color:var(--yellow)}
 const PRAZO = new Date('2026-10-16T23:59:00-03:00');
 
 const MODALIDADES = [
- {nome:'Atletismo: 100m rasos', cor:'var(--red)', form:'https://forms.gle/s2eGJ6i4CmtLqcTw8', reg:['Será permitida a inscrição de no máximo 16 atletas por naipe (masculino e feminino), sendo a competição realizada de maneira separada em cada naipe. A competição seguirá as regras oficiais da Confederação Brasileira de Atletismo. Para o estabelecimento do primeiro, segundo e terceiro lugar serão considerados os atletas com os menores tempos no ranking geral.'], cats:[
+ {nome:'Atletismo: 100m rasos', cor:'var(--red)', form:'https://forms.gle/s2eGJ6i4CmtLqcTw8', reg:['Será permitida a inscrição de no máximo 18 atletas no naipe masculino e 16 no naipe feminino, sendo a competição realizada de maneira separada em cada naipe. A competição seguirá as regras oficiais da Confederação Brasileira de Atletismo. Como não será possível cronometrar o tempo de todos os atletas, a classificação será feita pela ordem de chegada. No naipe masculino, a prova será disputada em 3 baterias de 6 atletas, e os 2 primeiros colocados de cada bateria avançam para a final. No naipe feminino, a prova será disputada em 2 baterias de 8 atletas, e as 4 primeiras colocadas de cada bateria avançam para a final. O primeiro, o segundo e o terceiro lugar serão definidos pela ordem de chegada na final.'], cats:[
    ['Masculino','Individual','16 atletas'],['Feminino','Individual','16 atletas']]},
- {nome:'Atletismo: Revezamento 4x400m', cor:'#2a44b8', form:'https://forms.gle/vAu74L29yfkDzZAB9', reg:['Será permitida a inscrição de equipes com 4 atletas por naipe (masculino e feminino). A modalidade terá um limite máximo de 8 equipes inscritas por naipe. A competição seguirá as regras oficiais da Confederação Brasileira de Atletismo. Para o estabelecimento do primeiro, segundo e terceiro lugar serão consideradas as equipes com os menores tempos no ranking geral.'], cats:[
+ {nome:'Atletismo: Revezamento 4x400m', cor:'#2a44b8', form:'https://forms.gle/vAu74L29yfkDzZAB9', reg:['Será permitida a inscrição de equipes com 4 atletas por naipe (masculino e feminino). A modalidade terá um limite máximo de 8 equipes inscritas por naipe. A competição seguirá as regras oficiais da Confederação Brasileira de Atletismo. Como não será possível cronometrar o tempo de todas as equipes, a classificação será feita pela ordem de chegada. O primeiro, o segundo e o terceiro lugar serão definidos pela ordem de chegada das equipes.'], cats:[
    ['Masculino','Equipe de 4 atletas','8 equipes'],['Feminino','Equipe de 4 atletas','8 equipes']]},
  {nome:'Beach tênis', cor:'var(--yellow)', form:'https://forms.gle/Je2L3DWhryNg3Md18', reg:['Serão permitidas inscrições de duplas por naipe (masculino e feminino). A modalidade terá um limite máximo de 16 duplas inscritas por naipe. A partida será disputada em set único de 6 games, com diferença de dois, onde a contagem segue o sistema do tênis (15, 30, 40 e game). Em caso de 6-6, aplica-se um tie-break. O sistema de disputa é o mata-mata.'], cats:[
    ['Masculino','Dupla','16 duplas'],['Feminino','Dupla','16 duplas']]},
@@ -186,27 +215,29 @@ const MODALIDADES = [
 ];
 
 /* Tabela de jogos: {mod, cat, hora, local, jogo, fase} */
-const JOGOS_AVISO = 'Chaveamentos sorteados em 21/10/2026, com as equipes inscritas até 21/10/2026 às 09h48. Horários previstos, sujeitos a alteração conforme o andamento dos jogos.';
+const JOGOS_AVISO = 'Chaveamentos sorteados em 21/10/2026, com as equipes inscritas até 21/10/2026 às 11h21. Horários previstos, sujeitos a alteração conforme o andamento dos jogos. Em cada chave, as equipes ficam à esquerda e o vencedor de cada jogo avança para a direita.';
 const JOGOS_NOTAS = {
- 'Futebol society': 'Eliminatória simples, sem disputa de terceiro lugar.',
- 'Vôlei de areia 4x4': 'Quadra única. Eliminatória simples, sem disputa de terceiro lugar. No feminino, a equipe SEAF foi sorteada para entrar na semifinal; a vencedora do J2 aguarda na final.',
- 'Queimado': 'Com 11 equipes, a Financeiro Pro Max (SEAF) foi sorteada para entrar apenas nas quartas de final; o vencedor do J5 enfrenta essa equipe.',
- 'Beach tênis': 'Quadra única: feminino primeiro e, para encerrar, o jogo único do masculino. A Dupla 5 (SEAF) foi sorteada para entrar na semifinal.',
- 'Atletismo: 100m rasos': 'Duas baterias por naipe, com atletas distribuídos de modo a evitar concentração de uma mesma Secretaria na mesma bateria. Os 8 melhores tempos das duas baterias disputam a final.',
- 'Atletismo: Revezamento 4x400m': 'Bateria única por naipe; vence a equipe com o menor tempo.'
+ 'Futebol society': 'Eliminatória simples, sem disputa de terceiro lugar. Campo de society, a partir das 09h40.',
+ 'Vôlei de areia 4x4': 'Eliminatória simples, sem disputa de terceiro lugar. O feminino abre às 09h00 e o masculino vem na sequência. No feminino, a equipe SEAF foi sorteada para entrar na semifinal.',
+ 'Queimado': 'Ginásio, a partir das 09h40. Com 11 equipes, a Financeiro Pro Max (SEAF) foi sorteada para entrar apenas na 2ª rodada. Sem disputa de terceiro lugar.',
+ 'Beach tênis': 'O jogo do masculino abre às 09h00 e o feminino vem na sequência. A Dupla 5 (SEAF) foi sorteada para entrar na semifinal feminina.',
+ 'Futsal': 'Jogo único, às 09h00, no ginásio.',
+ 'Atletismo: 100m rasos': 'Baterias a partir das 10h00; as finais vêm depois das baterias dos dois naipes, primeiro a masculina e depois a feminina. Classificação pela ordem de chegada. Masculino: 3 baterias de 6 atletas; os 2 primeiros de cada bateria avançam para a final. Feminino: 2 baterias de 8 atletas; as 4 primeiras de cada bateria avançam para a final. Atletas distribuídos de modo a evitar concentração de uma mesma Secretaria na mesma bateria.',
+ 'Atletismo: Revezamento 4x400m': 'Realizado após o término dos 100m rasos. Prova única por naipe; vence a equipe que chegar primeiro.'
 };
 const JOGOS_ABERTO = false;
 const JOGOS = [];
+const CHAVES = [{"mod": "Queimado", "cat": "Misto", "local": "Ginásio", "inicio": "09h40", "raiz": {"n": "J10", "hora": "11h28", "fase": "Final", "kids": [{"n": "J6", "hora": "10h40", "fase": "2ª rodada", "kids": [{"n": "J2", "hora": "09h52", "fase": "1ª rodada", "kids": [{"nome": "SEM Parar", "sec": "SEMP", "sort": false}, {"nome": "UOP", "sec": "SEES", "sort": false}]}, {"n": "J3", "hora": "10h04", "fase": "1ª rodada", "kids": [{"nome": "Tropa da Vivi", "sec": "GAB", "sort": false}, {"nome": "Maior Lance", "sec": "SEAF", "sort": false}]}]}, {"n": "J9", "hora": "11h16", "fase": "Semifinal", "kids": [{"n": "J7", "hora": "10h52", "fase": "2ª rodada", "kids": [{"n": "J4", "hora": "10h16", "fase": "1ª rodada", "kids": [{"nome": "GECONQUISTADORES", "sec": "SEAF", "sort": false}, {"nome": "GGADM", "sec": "SEAF", "sort": false}]}, {"n": "J5", "hora": "10h28", "fase": "1ª rodada", "kids": [{"nome": "Tropa do Gabinete", "sec": "GAB", "sort": false}, {"nome": "HOMOLOGADOS PARA QUEIMAR", "sec": "SEAF", "sort": false}]}]}, {"n": "J8", "hora": "11h04", "fase": "2ª rodada", "kids": [{"nome": "Financeiro Pro Max", "sec": "SEAF", "sort": true}, {"n": "J1", "hora": "09h40", "fase": "1ª rodada", "kids": [{"nome": "Esquadrão Quack", "sec": "SEAF", "sort": false}, {"nome": "Ninguém escapa", "sec": "SEGE", "sort": false}]}]}]}]}}, {"mod": "Futebol society", "cat": "Masculino", "local": "Society", "inicio": "09h40", "raiz": {"n": "J7", "hora": "11h40", "fase": "Final", "kids": [{"n": "J5", "hora": "11h00", "fase": "Semifinal", "kids": [{"n": "J3", "hora": "10h20", "fase": "Quartas de final", "kids": [{"nome": "GETRA F.C", "sec": "SULOG", "sort": false}, {"nome": "Ridículos F.C.", "sec": "SEAF", "sort": false}]}, {"n": "J4", "hora": "10h40", "fase": "Quartas de final", "kids": [{"nome": "LA TERRAZZA F.C", "sec": "SEOB", "sort": false}, {"nome": "Manutenção", "sec": "GAB", "sort": false}]}]}, {"n": "J6", "hora": "11h20", "fase": "Semifinal", "kids": [{"n": "J1", "hora": "09h40", "fase": "Quartas de final", "kids": [{"nome": "Exauridos FC", "sec": "SEAF", "sort": false}, {"nome": "SUFRE - FC", "sec": "SEGE", "sort": false}]}, {"n": "J2", "hora": "10h00", "fase": "Quartas de final", "kids": [{"nome": "LOSC Lyra FC", "sec": "SEAF", "sort": false}, {"nome": "Boleiros", "sec": "SEAF", "sort": false}]}]}]}}, {"mod": "Vôlei de areia 4x4", "cat": "Masculino", "local": "Quadra de areia 2", "inicio": "10h00", "raiz": {"n": "J7", "hora": "11h30", "fase": "Final", "kids": [{"n": "J5", "hora": "11h00", "fase": "Semifinal", "kids": [{"n": "J1", "hora": "10h00", "fase": "Quartas de final", "kids": [{"nome": "Os Brabos do Vôlei", "sec": "SEAF", "sort": false}, {"nome": "Vôlei do Off", "sec": "SEOB", "sort": false}]}, {"n": "J2", "hora": "10h15", "fase": "Quartas de final", "kids": [{"nome": "Papudinhos", "sec": "SEDE", "sort": false}, {"nome": "Manutenção I", "sec": "GAB", "sort": false}]}]}, {"n": "J6", "hora": "11h15", "fase": "Semifinal", "kids": [{"n": "J3", "hora": "10h30", "fase": "Quartas de final", "kids": [{"nome": "Manutenção II", "sec": "GAB", "sort": false}, {"nome": "Getra", "sec": "SULOG", "sort": false}]}, {"n": "J4", "hora": "10h45", "fase": "Quartas de final", "kids": [{"nome": "Voleiros", "sec": "SEGP", "sort": false}, {"nome": "GGADM", "sec": "GAB", "sort": false}]}]}]}}, {"mod": "Vôlei de areia 4x4", "cat": "Feminino", "local": "Quadra de areia 2", "inicio": "09h00", "raiz": {"n": "J4", "hora": "09h45", "fase": "Final", "kids": [{"n": "J2", "hora": "09h15", "fase": "1ª rodada", "kids": [{"nome": "NIKÉ", "sec": "SEDE", "sort": false}, {"nome": "SEOB", "sec": "", "sort": false}]}, {"n": "J3", "hora": "09h30", "fase": "Semifinal", "kids": [{"nome": "SEAF", "sec": "", "sort": true}, {"n": "J1", "hora": "09h00", "fase": "1ª rodada", "kids": [{"nome": "Cambalacho", "sec": "SEAF", "sort": false}, {"nome": "SEES", "sec": "", "sort": false}]}]}]}}, {"mod": "Beach tênis", "cat": "Feminino", "local": "Quadra de areia 1", "inicio": "09h20", "raiz": {"n": "J4", "hora": "10h20", "fase": "Final", "kids": [{"n": "J2", "hora": "09h40", "fase": "1ª rodada", "kids": [{"nome": "Dupla 3", "sec": "SEAF", "sort": false}, {"nome": "Dupla 1", "sec": "SEAF", "sort": false}]}, {"n": "J3", "hora": "10h00", "fase": "Semifinal", "kids": [{"nome": "Dupla 5", "sec": "SEAF", "sort": true}, {"n": "J1", "hora": "09h20", "fase": "1ª rodada", "kids": [{"nome": "Dupla 4", "sec": "SEAF", "sort": false}, {"nome": "Dupla 2", "sec": "SEES", "sort": false}]}]}]}}, {"mod": "Futsal", "cat": "Feminino", "local": "Ginásio", "inicio": "09h00", "raiz": {"n": "Jogo único", "hora": "09h00", "fase": "Final", "kids": [{"nome": "As inexigíveis", "sec": "SEAF"}, {"nome": "UOP", "sec": "SEES"}]}}, {"mod": "Beach tênis", "cat": "Masculino", "local": "Quadra de areia 1", "inicio": "09h00", "raiz": {"n": "Jogo único", "hora": "09h00", "fase": "Final", "kids": [{"nome": "Dupla 1", "sec": "GAB"}, {"nome": "Dupla 2", "sec": "SEMP"}]}}, {"mod": "Atletismo: 100m rasos", "cat": "Masculino", "local": "Pista de atletismo", "inicio": "10h00", "raiz": {"n": "Final", "hora": "10h50", "fase": "avançam os 2 primeiros de cada bateria", "kids": [{"nome": "Bateria 1", "sub": "10h00 · 6 atletas", "atl": [{"n": "Cleber Miguel Cabral Batista", "s": "GAB"}, {"n": "Esdras Alencar e Silva", "s": "GAB"}, {"n": "Higo de Oliveira Alcoforado", "s": "SEGP"}, {"n": "Lucca Rodrigues Fraga", "s": "SEMP"}, {"n": "Sávio Rafael Santos da Silva", "s": "SEGE"}, {"n": "Túlio Romero Carvalho Lima", "s": "GAB"}]}, {"nome": "Bateria 2", "sub": "10h10 · 6 atletas", "atl": [{"n": "Jhonata Nascimento dos Santos", "s": "GAB"}, {"n": "Lucas Gabriel da Silva Xavier", "s": "SEGP"}, {"n": "Rodrigo Antônio da Silva", "s": "SEAM"}, {"n": "Telwan Lima de Oliveira", "s": "SEGE"}, {"n": "Thaisson Beserra da Silva", "s": "GAB"}, {"n": "Wallison Richard Ferreira da Silva", "s": "SEDE"}]}, {"nome": "Bateria 3", "sub": "10h20 · 6 atletas", "atl": [{"n": "Carlos Batista da Silva", "s": "SEOB"}, {"n": "Carlos Eduardo Gomes de Lima", "s": "SEMP"}, {"n": "Eduardo Jorge Barcelos de Almeida", "s": "GAB"}, {"n": "Leonardo Guimarães da Silva Filho", "s": "SEGP"}, {"n": "Lucas Rodrigues Silva de Almeida", "s": "SEDE"}, {"n": "Marcelo Souza da Silva", "s": "GAB"}]}]}}, {"mod": "Atletismo: 100m rasos", "cat": "Feminino", "local": "Pista de atletismo", "inicio": "10h30", "raiz": {"n": "Final", "hora": "11h00", "fase": "avançam as 4 primeiras de cada bateria", "kids": [{"nome": "Bateria 1", "sub": "10h30 · 8 atletas", "atl": [{"n": "Amanda Maria da Soledade Guilherme Soares", "s": "SEGE"}, {"n": "Andreza Galindo Ferreira", "s": "SEAF"}, {"n": "Eduarda Syndre Lopes de Oliveira", "s": "SEGP"}, {"n": "Marta da Silva Pereira", "s": "SEGP"}, {"n": "Mônica Rejane de Aguiar Silva", "s": "SEES"}, {"n": "Rayra Nascimento de Lima", "s": "SEGP"}, {"n": "Roberta Soares Andrade", "s": "GAB"}, {"n": "Vanessa Bastos Simões da Costa", "s": "SEMP"}]}, {"nome": "Bateria 2", "sub": "10h40 · 8 atletas", "atl": [{"n": "Elainy Cristina de Melo Almeida", "s": "SEGP"}, {"n": "Gabriela de Souza", "s": "SEES"}, {"n": "Layla Bonfim Ferreira", "s": "SEDE"}, {"n": "Maria Eduarda Vasconcelos Gomes", "s": "GAB"}, {"n": "Nancilda Conceição Silva Barros", "s": "SEGE"}, {"n": "Thayane Hayalla de Oliveira Lima", "s": "GAB"}, {"n": "Vanilda Pereira Soares", "s": "SEMP"}, {"n": "Witoria Modavia da Silva", "s": "SEGP"}]}]}}, {"mod": "Atletismo: Revezamento 4x400m", "cat": "Masculino", "local": "Pista de atletismo", "inicio": "11h10", "raiz": {"n": "Prova única", "hora": "11h10", "fase": "vence quem chegar primeiro", "kids": [{"nome": "GAB", "sec": "GAB", "atl": [{"n": "Jhonata Nascimento dos Santos, João Victor de Santana Vila Nova, Leonardo Bruno da Silva de Barros, Magno Antonio do Nascimento", "s": ""}]}, {"nome": "GAB (equipe 2)", "sec": "GAB", "atl": [{"n": "Célio Henrique Rodrigues Vieira, Luiz Guilherme Sá Cavalcanti de Albuquerque Andrade da Silva, Thaisson Beserra da Silva, Túlio Romero Carvalho Lima", "s": ""}]}, {"nome": "SEGE", "sec": "SEGE", "atl": [{"n": "Higo de Oliveira Alcoforado, Ronald Callou de Moura Brasil Filho, Sávio Rafael Santos da Silva, Telwan Lima de Oliveira", "s": ""}]}]}}, {"mod": "Atletismo: Revezamento 4x400m", "cat": "Feminino", "local": "Pista de atletismo", "inicio": "11h20", "raiz": {"n": "Prova única", "hora": "11h20", "fase": "vence quem chegar primeiro", "kids": [{"nome": "GAB", "sec": "GAB", "atl": [{"n": "Bianca Beatriz de Souza Sales, Maria Eduarda Vasconcelos Gomes, Roberta Soares Andrade, Thayane Hayalla de Oliveira Lima", "s": ""}]}, {"nome": "SEAF", "sec": "SEAF", "atl": [{"n": "Camille Gabriela Barbosa de Moura, Katarina Magalhães Cutrim Tavares, Maria Beatriz Nobre de Abreu, Nykássia Natacha Rocha Dinoá", "s": ""}]}, {"nome": "SEES", "sec": "SEES", "atl": [{"n": "Fátima Godinho, Gabriela de Souza, Mônica Rejane de Aguiar Silva, Thalyta Karyne Guedes Gonçalves", "s": ""}]}, {"nome": "SEGE", "sec": "SEGE", "atl": [{"n": "Amanda Soares, Catherine Chaves Cavalcanti da Silva, Gabrielly Lou, Patrícia Campos", "s": ""}]}]}}];
 
 /* Inscritos: {mod, cat, equipe, nome, secretaria} (sem CPF, telefone ou e-mail) */
 /* Observações por equipe: 'Modalidade|Equipe': 'texto' */
 const OBS = {'Futebol society|Manutenção': 'Os 14 atletas serão escolhidos no dia da competição.'};
-const INSCRITOS_ATE = '21/10/2026 às 10h33';
+const INSCRITOS_ATE = '21/10/2026 às 11h21';
 const P = (mod, cat, equipe, sec, nomes) => nomes.map(nome => ({mod, cat, equipe, nome, secretaria: sec}));
 const S = (mod, cat, lista) => lista.map(l => { const [nome, secretaria] = l.split('|'); return {mod, cat, equipe: '', nome, secretaria}; });
 const INSCRITOS = [
  ...S('Atletismo: 100m rasos','Feminino',['Amanda Maria da Soledade Guilherme Soares|SEGE','Andreza Galindo Ferreira|SEAF','Elainy Cristina de Melo Almeida|SEGP','Gabriela de Souza|SEES','Layla Bonfim Ferreira|SEDE','Marta da Silva Pereira|SEGP','Mônica Rejane de Aguiar Silva|SEES','Nancilda Conceição Silva Barros|SEGE','Rayra Nascimento de Lima|SEGP','Vanessa Bastos Simões da Costa|SEMP','Vanilda Pereira Soares|SEMP']),
- ...S('Atletismo: 100m rasos','Masculino',['Carlos Batista da Silva|SEOB','Carlos Eduardo Gomes de Lima|SEMP','Cleber Miguel Cabral Batista|GAB','Eduardo Jorge Barcelos de Almeida|GAB','Higo de Oliveira Alcoforado|SEGP','Jhonata Nascimento dos Santos|GAB','Leonardo Guimarães da Silva Filho|SEGP','Lucas Gabriel da Silva Xavier|SEGP','Lucas Rodrigues Silva de Almeida|SEDE','Lucca Rodrigues Fraga|SEMP','Marcelo Souza da Silva|GAB','Rodrigo Antônio da Silva|SEAM','Sávio Rafael Santos da Silva|SEGE','Telwan Lima de Oliveira|SEGE','Thaisson Beserra da Silva|GAB','Wallison Richard Ferreira da Silva|SEDE']),
+ ...S('Atletismo: 100m rasos','Masculino',['Carlos Batista da Silva|SEOB','Carlos Eduardo Gomes de Lima|SEMP','Cleber Miguel Cabral Batista|GAB','Eduardo Jorge Barcelos de Almeida|GAB','Higo de Oliveira Alcoforado|SEGP','Jhonata Nascimento dos Santos|GAB','Leonardo Guimarães da Silva Filho|SEGP','Lucas Gabriel da Silva Xavier|SEGP','Lucas Rodrigues Silva de Almeida|SEDE','Lucca Rodrigues Fraga|SEMP','Marcelo Souza da Silva|GAB','Rodrigo Antônio da Silva|SEAM','Sávio Rafael Santos da Silva|SEGE','Telwan Lima de Oliveira|SEGE','Thaisson Beserra da Silva|GAB','Wallison Richard Ferreira da Silva|SEDE','Esdras Alencar e Silva|GAB','Túlio Romero Carvalho Lima|GAB']),
  ...P('Atletismo: Revezamento 4x400m','Feminino','SEAF','SEAF',['Camille Gabriela Barbosa de Moura','Nykássia Natacha Rocha Dinoá','Katarina Magalhães Cutrim Tavares','Maria Beatriz Nobre de Abreu']),
  ...P('Atletismo: Revezamento 4x400m','Feminino','SEES','SEES',['Gabriela de Souza','Mônica Rejane de Aguiar Silva','Thalyta Karyne Guedes Gonçalves','Fátima Godinho']),
  ...P('Atletismo: Revezamento 4x400m','Masculino','SEGE','SEGE',['Telwan Lima de Oliveira','Higo de Oliveira Alcoforado','Ronald Callou de Moura Brasil Filho','Sávio Rafael Santos da Silva']),
@@ -287,26 +318,61 @@ function opcoes(sel){
   sel.innerHTML = '<option value="">Todas as modalidades</option>' + MODALIDADES.map(m => `<option>${esc(m.nome)}</option>`).join('');
 }
 
-// Tabela de jogos
+// Tabela de jogos (chaveamento)
 (function(){
   const box = $('#jogos-box');
-  if (!JOGOS.length){
+  if (!CHAVES.length){
     box.innerHTML = '<div class="empty"><b>A tabela será divulgada aqui após o encerramento das inscrições.</b>Volte em breve para conferir os horários dos jogos.</div>';
     return;
   }
-  const n = (k, s, p) => `${k} ${k === 1 ? s : p}`;
-  const ats = j => j.atletas ? `<details class="at"><summary>Ver ${j.atletas[0].s && j.jogo.startsWith('Bateria') ? 'atletas' : 'equipes'}</summary><ul>${j.atletas.map(a => `<li>${esc(a.n)} <span>(${esc(a.s)})</span></li>`).join('')}</ul></details>` : '';
+  const atl = (k, rot) => k.atl ? `<details><summary>${rot}</summary><ul>${k.atl.map(a => `<li>${esc(a.n)}${a.s ? ` <span>(${esc(a.s)})</span>` : ''}</li>`).join('')}</ul></details>` : '';
+  const heat = k => `<div class="bx lf"><b>${esc(k.nome)}</b><small>${esc(k.sub)}</small>${atl(k, 'ver atletas')}</div>`;
+  const team = k => `${esc(k.nome)}${k.sec && k.sec !== k.nome ? ` <span>(${esc(k.sec)})</span>` : ''}${k.sort ? ' <em>sorteada</em>' : ''}`;
+  const node = (n, cat) => {
+    const heats = n.kids.some(k => k.sub);
+    const relay = !heats && n.kids.some(k => k.atl);
+    const jogos = n.kids.filter(k => k.kids);
+    const vc = cat === 'Feminino' ? 'Vencedora' : 'Vencedor';
+    let corpo = '';
+    if (!heats) {
+      const linhas = relay ? n.kids.map(team) : n.kids.map(k => k.kids ? `${vc} ${esc(k.n)}` : team(k));
+      corpo = `<div class="vs">${linhas.join(relay ? '<br>' : '<br><i>×</i> ')}</div>`;
+      if (relay) corpo += `<details><summary>ver integrantes</summary><ul>${n.kids.map(k => `<li><b>${esc(k.nome)}</b>: ${esc(k.atl.map(a => a.n).join(', '))}</li>`).join('')}</ul></details>`;
+    }
+    const wn = `<div class="bx wn${heats ? ' fin' : ''}"><b>${esc(n.n)} · ${esc(n.hora)}</b><small>${esc(n.fase)}</small>${corpo}</div>`;
+    if (heats) return `<div class="nd"><div class="kids">${n.kids.map(k => `<div class="kid">${heat(k)}</div>`).join('')}</div>${wn}</div>`;
+    if (!jogos.length) return `<div class="nd">${wn}</div>`;
+    return `<div class="nd"><div class="kids">${jogos.map(k => `<div class="kid">${node(k, cat)}</div>`).join('')}</div>${wn}</div>`;
+  };
+  const ordem = {Masculino: 0, Feminino: 1, Misto: 2};
   const html = MODALIDADES.map(m => {
-    const L = JOGOS.filter(j => j.mod === m.nome);
+    const L = CHAVES.filter(c => c.mod === m.nome).sort((a, b) => a.inicio.localeCompare(b.inicio) || (ordem[a.cat] ?? 9) - (ordem[b.cat] ?? 9));
     if (!L.length) return '';
-    const cats = [...new Set(L.map(j => j.cat).filter(Boolean))];
-    const multi = cats.length > 1;
-    const un = m.nome.startsWith('Atletismo') ? n(L.length, 'prova', 'provas') : n(L.length, 'jogo', 'jogos');
-    const rotulo = (cats.length === 1 ? cats[0] + ' · ' : '') + un;
-    const linhas = L.map(j => `<tr><td>${esc(j.hora)}</td><td>${esc(j.dur || '')}</td>${multi ? `<td>${esc(j.cat || '')}</td>` : ''}<td>${esc(j.jogo)}${ats(j)}</td><td>${esc(j.fase || '')}</td><td>${esc(j.local || '')}</td></tr>`).join('');
-    return `<details class="mod" style="--c:${m.cor}"${JOGOS_ABERTO ? ' open' : ''}><summary><b>${esc(m.nome)}</b><em>${rotulo}</em></summary>${JOGOS_NOTAS[m.nome] ? `<p class="nota">${esc(JOGOS_NOTAS[m.nome])}</p>` : ''}<div class="scroll jg"><table><thead><tr><th>Horário</th><th>Duração</th>${multi ? '<th>Naipe</th>' : ''}<th>Jogo</th><th>Fase</th><th>Local</th></tr></thead><tbody>${linhas}</tbody></table></div></details>`;
+    const nota = JOGOS_NOTAS[m.nome] ? `<p class="nota">${esc(JOGOS_NOTAS[m.nome])}</p>` : '';
+    const corpo = L.map(c => `<h3 class="bk-h">${esc(c.cat)} <em>início às ${esc(c.inicio)} · ${esc(c.local)}</em></h3><div class="bk">${node(c.raiz, c.cat)}</div>`).join('');
+    return `<details class="mod" style="--c:${m.cor}"${JOGOS_ABERTO ? ' open' : ''}><summary><b>${esc(m.nome)}</b><em>${L.map(c => c.cat).join(' e ')}</em></summary><div class="jgbox">${nota}${corpo}</div></details>`;
   }).join('');
   box.innerHTML = `<p class="notice">${JOGOS_AVISO}</p>` + html;
+  const layout = () => {
+    const nds = [...box.querySelectorAll('.nd')].reverse();
+    nds.forEach(nd => {
+      const kids = nd.querySelector(':scope > .kids'), wn = nd.querySelector(':scope > .bx.wn'); if (!kids) return;
+      const kr = kids.getBoundingClientRect(), ys = [];
+      [...kids.children].forEach(kid => {
+        const a = kid.querySelector(':scope > .bx') || kid.querySelector(':scope > .nd > .bx.wn');
+        const r = kid.getBoundingClientRect(), ar = a.getBoundingClientRect();
+        const ay = ar.top + ar.height / 2 - r.top;
+        kid.style.setProperty('--ay', ay + 'px');
+        ys.push(ar.top + ar.height / 2 - kr.top);
+      });
+      kids.style.setProperty('--y1', ys[0] + 'px'); kids.style.setProperty('--y2', ys[ys.length - 1] + 'px');
+      wn.style.marginTop = Math.max(0, (ys[0] + ys[ys.length - 1]) / 2 - wn.getBoundingClientRect().height / 2) + 'px';
+    });
+  };
+  box.addEventListener('toggle', layout, true);
+  window.addEventListener('load', layout); window.addEventListener('resize', layout);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(layout);
+  layout();
 })();
 
 // Equipes e inscritos
